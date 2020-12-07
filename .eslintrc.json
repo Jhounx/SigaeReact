@@ -5,9 +5,11 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings"
     ],
-    "parser":"babel-eslint",
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -18,14 +20,26 @@
     "plugins": [
         "react"
     ],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["src"],
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
     "rules": {
-        "quotes": ["error", "double"],
-        "indent": ["warn", 4],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "indent": [
+            "warn", 4
+        ],
         "no-empty-function": "off",
         "no-empty": "off",
         "no-var": "off",
-        "no-unused-vars": "off",
-        "react/prop-types": "off",
-        "no-import-assign": "off"
+        "no-unused-vars": "warn",
+        "react/prop-types": "off"
     }
 }

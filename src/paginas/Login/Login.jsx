@@ -1,24 +1,20 @@
-import React, { useState, useContext } from "react"
+import React, { useState } from "react"
 import Helmet from "react-helmet"
-import { Link, Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { ReactSVG } from "react-svg"
 import { Button } from "@material-ui/core"
 import { RemoveRedEye } from "@material-ui/icons"
 
 import Loading from "../../componentes/Loading/Loading"
-import InputLogin from "../../componentes/InputLogin/InputLogin"
-import LinkEstado from "../../componentes/LinkEstado/LinkEstado"
+import LinkEstado from "../../componentes/Rotas/LinkEstado/LinkEstado"
+import InputLogin from "../../componentes/Genericos/InputLogin/InputLogin"
+import Alerta from "../../componentes/Genericos/Alerta/Alterta"
 
 import LogoSigae from "../../assets/imagens/sigae.svg"
 import SpinnerLoading from "../../assets/imagens/spinner.svg"
 import estilos from "./Login.module.css"
 
-import { Alterar } from "../../assets/DadosGlobais"
-
 export default function Login() {
-
-    Alterar("estadoLogin", "VISITANTE")
-
     const [matricula, setMatricula] = useState("")
     const [senha, setSenha] = useState("")
 
@@ -28,6 +24,8 @@ export default function Login() {
     const [passwordShowed, showPassword] = useState(false)
 
     const [logando, setLogando] = useState(false)
+
+    const [alertaAberto, setAlertaAberto] = useState(false)
 
     const matriculaOnChange = (e) => {
         setMatricula(e.target.value)
@@ -78,6 +76,7 @@ export default function Login() {
                         <Button className={estilos.botaoLogin} id="botaoLogin" variant="contained" color="primary"
                             onClick={() => {
                                 setLogando(true)
+                                setAlertaAberto(true)
                             }}>
                             {
                                 logando ? (
@@ -98,6 +97,7 @@ export default function Login() {
                                 {/* <div onClick={<Redirecionar to="/" estadoLogin="VISITANTE"/>}  style={{float: "right"}} className={estilos.linkDiv}>Acessar sem login</div> */}
                             </div>
                         </div>
+                        <Alerta className={estilos.alerta} useState={[alertaAberto, setAlertaAberto]}></Alerta>
                     </div>
                     <div className={estilos.bottom}>
                         <div className={estilos.bottomTitle}>© 2020 SiGAÊ | Desenvolvimento:

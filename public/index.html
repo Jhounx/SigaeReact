@@ -6,15 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Sistema de gerenciamento de atendimento ao estudante" />
-    <meta name="author" content="Pedro Cerqueira Mota, João Costa Neto">
+    <meta name="author" content="Pedro Henrique Cerqueira Mota, João Costa dos Santos Neto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <title>SiGAÊ - IFBA</title>
 </head>
 
 <body>
-    <noscript>Você precisa de javascript para renderizar esse app</noscript>
+    <noscript>
+        <style>
+            .noscript {
+                display: flex !important;
+            }
+        </style>
+    </noscript>
     <div id="root">
-        <div style="background-color: rgb(240, 241, 243); width: 100%; height: 100%;"></div>
+        <div class="preRender">
+            <div class="noscript">
+                <h1>Alerta!!!</h1>
+                <h2>Você precisa ativar o<br> javascript para abrir o SiGAÊ</h2>
+            </div>
+        </div>
+        <style>
+            body {
+                margin: 0
+            }
+            .preRender {
+                background-color: rgb(240, 241, 243); 
+                width: 100%; 
+                height: 100%;
+            }
+    
+            .noscript {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+                align-items: center;
+            }
+    
+            h1 {
+                color: crimson;
+                font-size: 90;
+                margin-top: 100px !important;
+            }
+    
+            h2 {
+                font-size: 35px;
+                color: crimson;
+                text-align: justify;
+                text-justify: inter-word;
+                text-align: center;
+            }
+        </style>
     </div>
 </body>
 

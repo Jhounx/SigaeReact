@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 
 import "./assets/global.css"
 
-import StoreProvider from "./componentes/Store/Provider"
-import PrivateRoute from "./componentes/PrivateRouter/PrivateRouter"
+import StoreProvider from "./componentes/Rotas/Store/Provider"
+import PrivateRoute from "./componentes/Rotas/PrivateRouter/PrivateRouter"
 
 import TelaMain from "./paginas/Main/Main"
 import TelaLogin from "./paginas/Login/Login"

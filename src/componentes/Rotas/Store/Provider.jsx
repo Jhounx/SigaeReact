@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Context from "./Context"
-import { LoginAPI } from "../../assets/API"
-import { Dados, Definir } from "../../assets/DadosGlobais"
+import { LoginAPI } from "../../../assets/API"
+import { Definir } from "../../../assets/DadosGlobais"
 
 const StoreProvider = ({ children }) => {
     const [estadoAPI, setEstadoAPI] = useState(0)

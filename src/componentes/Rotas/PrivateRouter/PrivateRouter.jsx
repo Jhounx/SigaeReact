@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
-import Loading from "../Loading/Loading"
-import StoreContext from "../../componentes/Store/Context"
-import {Dados} from "../../assets/DadosGlobais"
+import Loading from "../../Loading/Loading"
+import StoreContext from "../../Rotas/Store/Context"
+import {Dados} from "../../../assets/DadosGlobais"
 
 const PrivateRoute = (props) => {
     const {estadoAPI} = useContext(StoreContext)
