@@ -99,6 +99,15 @@
     
 }
 
+.inputErro {
+    position: absolute;
+    left: 5;
+    height: 100% !important;
+    color: var(--foreground-vermelho-erro);
+    width: 32px !important;
+    transition: opacity 200ms !important;
+}
+
 .loginSenha {
     padding-right: 45px !important;
 }
@@ -178,6 +187,17 @@
 /* alerta */
 
 .alerta {
-    width: 100%;
-    margin-top: 8px;
+    margin-top: 10px;
+}
+
+.esqueciSenha {
+    margin-top: 3px;
+    color: var(--foreground-roxo-escuro);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.esqueciSenha:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }

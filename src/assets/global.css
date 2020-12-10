@@ -21,7 +21,6 @@ body {
     --background-roxo-claro: rgb(96, 108, 136);
     --background-roxo-escuro: rgb(64, 77, 108);
     --background-cinza-claro: rgb(219, 221, 224, 0.692);
-
     --foreground-roxo-claro: rgb(136, 164, 230);
     --foreground-roxo-escuro: rgb(63, 76, 107);
     --foreground-roxo-brilhante: rgb(130, 127, 254);
@@ -30,15 +29,20 @@ body {
     --foreground-cinza-claro: rgb(158, 158, 158);
     --foreground-cinza-escuro: rgb(144, 146, 148);
     --foreground-black: rgb(23, 22, 26);
+    --foreground-vermelho-erro: rgb(228, 74, 74);
+
 }
+
 
 /* MISC */
 input::placeholder {
-    color: var(--foreground-cinza-claro);
+    color: rgb(209, 209, 209)
+    /* color: var(--foreground-cinza-claro); */
 }
 
 input::-ms-input-placeholder {
-    color: var(--foreground-cinza-claro);
+    color: rgb(209, 209, 209)
+    /* color: var(--foreground-cinza-claro); */
 }
 
 ::-moz-selection {

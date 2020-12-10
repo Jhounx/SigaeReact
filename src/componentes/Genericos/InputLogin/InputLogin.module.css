@@ -31,7 +31,7 @@
 }
 
 .campo:focus {
-    border-color: var(--foreground-roxo-brilhante);
+    border-color: var(--foreground-roxo-brilhante) !important;
     outline: none;
 }
 
