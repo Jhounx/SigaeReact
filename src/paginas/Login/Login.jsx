@@ -1,9 +1,10 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Helmet from "react-helmet"
 import { Link } from "react-router-dom"
 import { ReactSVG } from "react-svg"
 import { Button } from "@material-ui/core"
 import { RemoveRedEye, Error } from "@material-ui/icons"
+import { isMobile } from "react-device-detect"
 
 import Loading from "../../componentes/Loading/Loading"
 import LinkEstado from "../../componentes/Rotas/LinkEstado/LinkEstado"
@@ -12,15 +13,13 @@ import Alerta from "../../componentes/Genericos/Alerta/Alerta"
 
 import LogoSigae from "../../assets/imagens/sigae.svg"
 import SpinnerLoading from "../../assets/imagens/spinner.svg"
+import RecuperarSenha from "../../componentes/Popups/Paginas/RecuperarSenha/RecuperarSenha"
 import estilos from "./Login.module.css"
 import responsive from "./Login_Responsive.module.css"
 
 export default function Login() {
     const [matricula, setMatricula] = useState("")
     const [senha, setSenha] = useState("")
-
-    const [place1Visivel, setPlace1Visivel] = useState(false)
-    const [place2Visivel, setPlace2Visivel] = useState(false)
 
     const [erroCampo1, setErroCampo1] = useState(false)
     const [erroCampo2, setErroCampo2] = useState(false)
@@ -29,17 +28,17 @@ export default function Login() {
 
     const [logando, setLogando] = useState(false)
 
-    const [alertaAberto, setAlertaAberto] = useState(false)
+    const [alertaAberto, setAlertaAberto] = useState(true)
     const [alertaTexto, setAlertaTexto] = useState("NONE")
+
+    const [openPopup, setOpenPopup] = useState(false)
 
     const matriculaOnChange = (e) => {
         setMatricula(e.target.value)
-        setPlace1Visivel(e.target.value.length > 0)
         if (e.target.value.length == 11) document.getElementById("loginSenha")?.focus()
     };
     const senhaOnChange = (e) => {
         setSenha(e.target.value)
-        setPlace2Visivel(e.target.value.length > 0)
     };
 
     const matriculaKeyDown = (e) => {
@@ -50,20 +49,29 @@ export default function Login() {
     };
 
     const logar = () => {
-        if(matricula.length == 0) setErroCampo1(true)
-        if(senha.length == 0) setErroCampo2(true)
-        if(matricula.length > 0 && senha.length > 0) {
+        if (matricula.length == 0) setErroCampo1(true)
+        if (senha.length == 0) setErroCampo2(true)
+        if (matricula.length > 0 && senha.length > 0) {
             setLogando(true)
             setAlertaAberto(!alertaAberto)
         }
     }
 
+    useEffect(() => {
+        if(isMobile) {
+            setTimeout(() => {
+                var height = document.getElementById("container").clientHeight
+                document.getElementById("container").style.height = height
+            }, 500);
+        }
+    }, [])
+
     return (
         <>
-            <Helmet bodyAttributes={{ class: estilos.fundo }} />
+            <Helmet htmlAttributes={{ class: estilos.htmlTop }} bodyAttributes={{ class: estilos.bodyTop }} />
             <Loading timer={500} />
-            <div className={estilos.container}>
-                <div className={`${estilos.centro} ${responsive.centro}`}>
+            <div id="container" className={estilos.container}>
+                <div id="centro" className={`${estilos.centro} ${responsive.centro}`}>
                     <div>
                         <div>
                             <img src={LogoSigae} alt="Logo" />
@@ -75,22 +83,24 @@ export default function Login() {
                         </h1>
                     </div>
                     <div className={`${estilos.body} ${responsive.body}`}>
-                        <InputLogin type="number" holder={"Sua Matricula"} visible={place1Visivel} value={matricula}
+                        <InputLogin type="number" holder="Sua Matricula" value={matricula}
                             onChange={matriculaOnChange} onKeyDown={matriculaKeyDown}
-                            erro={erroCampo1} setErro={setErroCampo1}>
-                            <Error style={{opacity: erroCampo1 ? 100 : 0}} className={estilos.inputErro}/>
+                            erro={erroCampo1} setErro={setErroCampo1}
+                            style={{marginTop: "25px"}}>
+                            <Error style={{ opacity: erroCampo1 ? 100 : 0 }} className={estilos.inputErro} />
                         </InputLogin>
-                        <InputLogin type={passwordShowed ? "text" : "password"} newClass={estilos.loginSenha}
-                            id="loginSenha" holder={"Sua Senha"}
-                            visible={place2Visivel} value={senha} onChange={senhaOnChange} onKeyDown={senhaKeyDown}
-                            erro={erroCampo2} setErro={setErroCampo2}>
+                        <InputLogin type={passwordShowed ? "text" : "password"}
+                            id="loginSenha" holder="Sua Senha"
+                            value={senha} onChange={senhaOnChange} onKeyDown={senhaKeyDown}
+                            erro={erroCampo2} setErro={setErroCampo2}
+                            style={{marginTop: "12px"}}>
                             <RemoveRedEye style={{
                                 color: `var(--${passwordShowed ? "foreground-roxo-brilhante" : "foreground-cinza-escuro"})`
                             }}
                             className={estilos.alternarSenha} onClick={() => {
                                 showPassword(!passwordShowed)
                             }} />
-                            <Error style={{opacity: erroCampo2 ? 100 : 0}} className={estilos.inputErro}/>
+                            <Error style={{ opacity: erroCampo2 ? 100 : 0 }} className={estilos.inputErro} />
                         </InputLogin>
                         <Button className={estilos.botaoLogin} id="botaoLogin" variant="contained" color="primary"
                             onClick={logar}>
@@ -107,15 +117,17 @@ export default function Login() {
                                 </div>
                             </div>
                             <div className={estilos.linksColunas}>
-                                <div className={estilos.linkDiv} style={{float: "right"}}>
+                                <div className={estilos.linkDiv} style={{ float: "right" }}>
                                     <LinkEstado to="/" estadoLogin="VISITANTE">Acessar sem login</LinkEstado>
                                 </div>
                             </div>
                         </div>
                         <Alerta tipo="error" visivel={alertaAberto} setVisivel={setAlertaAberto} showIcon={false} className={estilos.alerta}>
-                            <div style={{display: "flex", flexDirection: "column"}}>
+                            <div style={{ display: "flex", flexDirection: "column" }}>
                                 <div>{alertaTexto}</div>
-                                <div className={estilos.esqueciSenha}>Esqueceu sua senha?</div>
+                                <div className={estilos.esqueciSenha} onClick={() => {
+                                    setOpenPopup(true)
+                                }}>Esqueceu sua senha?</div>
                             </div>
                         </Alerta>
                     </div>
@@ -128,6 +140,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
+            <RecuperarSenha open={openPopup} setOpen={setOpenPopup}/>
         </>
     );
 }
