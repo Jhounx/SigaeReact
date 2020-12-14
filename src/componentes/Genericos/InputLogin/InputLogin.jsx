@@ -1,26 +1,21 @@
 import React, { useState } from "react"
-import estilos from "./InputLogin.module.css"
+import { CustumInput, InputPlaceHolder } from "./InputLogin.styles"
 
-export default function InputLogin({ style, holder, value, setErro, erro = false, children, ...inputProps }) {
+export default function InputLogin({ className, style, holder, value, setErro, erro = false, children, ...inputProps }) {
     const [placeColor, setPlaceColor] = useState("--foreground-roxo-fraco")
     return (
-        <div style={style}  className={estilos.inputContainer}>
-            <div style={{
-                color: `var(${placeColor})`,
-                opacity: value.length > 0 ? 100 : 0
-            }} className={estilos.inputPlaceholder}>{holder}
-            </div>
-            <input type="text" className={estilos.campo} placeholder={holder}
-                spellCheck="false"
-                style={{
-                    borderColor: `var(--${erro ? "foreground-vermelho-erro" : "foreground-roxo-fraco"}`
-                }}
+        <div className={className} style={{
+            position: "relative",
+            width: "100%",
+            ...style
+        }} >
+            <InputPlaceHolder className="inputLoginHolder" visivel={value.length > 0} color={placeColor}>{holder}</InputPlaceHolder>
+            <CustumInput value={value} spellCheck="false" erro={erro} placeholder={holder} {...inputProps}
                 onFocus={() => {
                     setPlaceColor("--foreground-roxo-brilhante");
                     if (typeof setErro == "function") setErro(false)
                 }}
-                onBlur={() => { setPlaceColor("--foreground-roxo-fraco") }} {...inputProps}
-            />
+                onBlur={() => { setPlaceColor("--foreground-roxo-fraco") }} {...inputProps} />
             {children}
         </div>
     )

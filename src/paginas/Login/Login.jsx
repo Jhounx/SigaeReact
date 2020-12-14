@@ -122,7 +122,7 @@ export default function Login() {
                                 </div>
                             </div>
                         </div>
-                        <Alerta tipo="error" visivel={alertaAberto} setVisivel={setAlertaAberto} showIcon={false} className={estilos.alerta}>
+                        <Alerta style={{marginTop: "10px", width: "100%"}} tipo="error" visivel={alertaAberto} setVisivel={setAlertaAberto} showIcon={false}>
                             <div style={{ display: "flex", flexDirection: "column" }}>
                                 <div>{alertaTexto}</div>
                                 <div className={estilos.esqueciSenha} onClick={() => {

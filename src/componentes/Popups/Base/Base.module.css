@@ -6,7 +6,8 @@
 
 .body {
     padding-top: 20px;
-    flex: 1
+    flex: 1;
+    overflow-y: auto;
 }
 
 .bottom {
