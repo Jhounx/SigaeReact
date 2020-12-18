@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react"
 import Helmet from "react-helmet"
 import { Link } from "react-router-dom"
-import { ReactSVG } from "react-svg"
 import { Button } from "@material-ui/core"
 import { RemoveRedEye, Error } from "@material-ui/icons"
-import { isMobile } from "react-device-detect"
+import { InterfaceUtils } from "../../assets/Utils"
+import { Sigae, Spinner } from "../../componentes/Comuns/SVG/SVG"
+import { LoginAPI } from "../../assets/API"
 
-import Loading from "../../componentes/Loading/Loading"
+import LoadingPagina from "../../componentes/Loadings/LoadingPagina/LoadingPagina"
 import LinkEstado from "../../componentes/Rotas/LinkEstado/LinkEstado"
 import InputLogin from "../../componentes/Genericos/InputLogin/InputLogin"
 import Alerta from "../../componentes/Genericos/Alerta/Alerta"
 
-import LogoSigae from "../../assets/imagens/sigae.svg"
-import SpinnerLoading from "../../assets/imagens/spinner.svg"
 import RecuperarSenha from "../../componentes/Popups/Paginas/RecuperarSenha/RecuperarSenha"
 import estilos from "./Login.module.css"
 import responsive from "./Login_Responsive.module.css"
@@ -20,15 +19,14 @@ import responsive from "./Login_Responsive.module.css"
 export default function Login() {
     const [matricula, setMatricula] = useState("")
     const [senha, setSenha] = useState("")
+    const [esperandoAPI, setEsperandoAPI] = useState(0)
 
     const [erroCampo1, setErroCampo1] = useState(false)
     const [erroCampo2, setErroCampo2] = useState(false)
 
     const [passwordShowed, showPassword] = useState(false)
 
-    const [logando, setLogando] = useState(false)
-
-    const [alertaAberto, setAlertaAberto] = useState(true)
+    const [alertaAberto, setAlertaAberto] = useState(false)
     const [alertaTexto, setAlertaTexto] = useState("NONE")
 
     const [openPopup, setOpenPopup] = useState(false)
@@ -48,33 +46,36 @@ export default function Login() {
         if (e.key == "Enter") document.getElementById("botaoLogin")?.focus()
     };
 
-    const logar = () => {
-        if (matricula.length == 0) setErroCampo1(true)
-        if (senha.length == 0) setErroCampo2(true)
-        if (matricula.length > 0 && senha.length > 0) {
-            setLogando(true)
-            setAlertaAberto(!alertaAberto)
+    const logar = (e) => {
+        var waiting = e.currentTarget.getAttribute("waiting")
+        if (waiting == 0) {
+            if (matricula.length == 0) setErroCampo1(true)
+            if (senha.length == 0) setErroCampo2(true)
+            if (matricula.length > 0 && senha.length > 0) {
+                setEsperandoAPI(1)
+                setAlertaAberto(false)
+                LoginAPI.Logar(matricula, senha, (resposta) => {
+                    setEsperandoAPI(0)
+                    setAlertaTexto(resposta.resposta)
+                    setAlertaAberto(true)
+                })
+            }
         }
     }
 
     useEffect(() => {
-        if(isMobile) {
-            setTimeout(() => {
-                var height = document.getElementById("container").clientHeight
-                document.getElementById("container").style.height = height
-            }, 500);
-        }
+        InterfaceUtils.setMobileHeight()
     }, [])
 
     return (
         <>
             <Helmet htmlAttributes={{ class: estilos.htmlTop }} bodyAttributes={{ class: estilos.bodyTop }} />
-            <Loading timer={500} />
+            <LoadingPagina timer={500} />
             <div id="container" className={estilos.container}>
                 <div id="centro" className={`${estilos.centro} ${responsive.centro}`}>
                     <div>
                         <div>
-                            <img src={LogoSigae} alt="Logo" />
+                            <Sigae />
                         </div>
                         <h1 className={estilos.titulo}>
                             Sistema de Gerenciamento de
@@ -86,14 +87,14 @@ export default function Login() {
                         <InputLogin type="number" holder="Sua Matricula" value={matricula}
                             onChange={matriculaOnChange} onKeyDown={matriculaKeyDown}
                             erro={erroCampo1} setErro={setErroCampo1}
-                            style={{marginTop: "25px"}}>
+                            style={{ marginTop: "25px" }}>
                             <Error style={{ opacity: erroCampo1 ? 100 : 0 }} className={estilos.inputErro} />
                         </InputLogin>
                         <InputLogin type={passwordShowed ? "text" : "password"}
                             id="loginSenha" holder="Sua Senha"
                             value={senha} onChange={senhaOnChange} onKeyDown={senhaKeyDown}
                             erro={erroCampo2} setErro={setErroCampo2}
-                            style={{marginTop: "12px"}}>
+                            style={{ marginTop: "12px" }}>
                             <RemoveRedEye style={{
                                 color: `var(--${passwordShowed ? "foreground-roxo-brilhante" : "foreground-cinza-escuro"})`
                             }}
@@ -103,14 +104,14 @@ export default function Login() {
                             <Error style={{ opacity: erroCampo2 ? 100 : 0 }} className={estilos.inputErro} />
                         </InputLogin>
                         <Button className={estilos.botaoLogin} id="botaoLogin" variant="contained" color="primary"
-                            onClick={logar}>
+                            waiting={esperandoAPI} onClick={logar}>
                             {
-                                logando ? (
-                                    <ReactSVG className={estilos.spinner} src={SpinnerLoading} />
+                                esperandoAPI == 1 ? (
+                                    <Spinner />
                                 ) : "Logar"
                             }
                         </Button>
-                        <div className={estilos.linksContainer}>
+                        <div className={`${estilos.linksContainer} ${responsive.linksContainer}`}>
                             <div className={estilos.linksColunas}>
                                 <div className={estilos.linkDiv}>
                                     <Link to="/registrar">Registrar novo usuário</Link>
@@ -122,7 +123,7 @@ export default function Login() {
                                 </div>
                             </div>
                         </div>
-                        <Alerta style={{marginTop: "10px", width: "100%"}} tipo="error" visivel={alertaAberto} setVisivel={setAlertaAberto} showIcon={false}>
+                        <Alerta style={{ marginTop: "10px", width: "100%" }} tipo="error" visivel={alertaAberto} setVisivel={setAlertaAberto} showIcon={false}>
                             <div style={{ display: "flex", flexDirection: "column" }}>
                                 <div>{alertaTexto}</div>
                                 <div className={estilos.esqueciSenha} onClick={() => {
@@ -140,7 +141,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-            <RecuperarSenha open={openPopup} setOpen={setOpenPopup}/>
+            <RecuperarSenha open={openPopup} setOpen={setOpenPopup} />
         </>
     );
 }

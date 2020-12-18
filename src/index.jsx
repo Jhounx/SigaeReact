@@ -14,18 +14,22 @@ import TelaDigitarCodigo from "./paginas/DigitarCodigo/DigitarCodigo"
 import TelaAlterarSenha from "./paginas/AlterarSenha/AlterarSenha"
 import Erro404 from "./paginas/Erro404/Erro404"
 
+import { ToastProvider } from "react-toast-notifications"
+
 ReactDOM.render(
     <Router>
-        <StoreProvider>
-            <Switch>
-                <PrivateRoute path="/" logado={<TelaMain />} naoLogado={<Redirect to="/login" />} visitante={<TelaMain />} exact />
-                <PrivateRoute path="/login" logado={<Redirect to="/" />} component={<TelaLogin />} exact />
-                <Route path="/registrar" component={TelaRegistrar} exact />
-                <Route path="/codigo" component={TelaDigitarCodigo} exact />
-                <Route path="/alterarSenha" component={TelaAlterarSenha} exact />
-                <Route path="*" component={Erro404} exact />
-            </Switch>
-        </StoreProvider>
+        <ToastProvider>
+            <StoreProvider>
+                <Switch>
+                    <PrivateRoute path="/" logado={<TelaMain />} naoLogado={<Redirect to="/login" />} visitante={<TelaMain />} exact />
+                    <PrivateRoute path="/login" logado={<Redirect to="/" />} component={<TelaLogin />} exact />
+                    <Route path="/registrar" component={TelaRegistrar} exact />
+                    <Route path="/codigo" component={TelaDigitarCodigo} exact />
+                    <Route path="/alterarSenha" component={TelaAlterarSenha} exact />
+                    <Route path="*" component={Erro404} exact />
+                </Switch>
+            </StoreProvider>
+        </ToastProvider>
     </Router>,
     document.getElementById("root")
 );

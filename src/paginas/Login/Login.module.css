@@ -8,7 +8,6 @@
 }
 
 .container {
-    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,7 +131,6 @@
 
 .spinner > div > svg {
     color: white !important;
-    fill: white !important;
     width: 28px !important;
     height: 28px !important;
 }

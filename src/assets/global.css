@@ -6,13 +6,18 @@
 
 html,
 body {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 
 #root {
     width: 100%;
     height: 100%;
+}
+
+.react-toast-notifications__container {
+    z-index: 99999999999 !important;
+    overflow-y: hidden !important;
 }
 
 :root {
@@ -21,6 +26,7 @@ body {
     --background-roxo-claro: rgb(96, 108, 136);
     --background-roxo-escuro: rgb(64, 77, 108);
     --background-cinza-claro: rgb(219, 221, 224, 0.692);
+    --background-cinza-escuro: rgb(74, 80, 88);
     --foreground-roxo-claro: rgb(136, 164, 230);
     --foreground-roxo-escuro: rgb(63, 76, 107);
     --foreground-roxo-brilhante: rgb(130, 127, 254);
@@ -30,7 +36,7 @@ body {
     --foreground-cinza-escuro: rgb(144, 146, 148);
     --foreground-black: rgb(23, 22, 26);
     --foreground-vermelho-erro: rgb(228, 74, 74);
-
+    --foreground-main: rgb(78, 95, 120)
 }
 
 /* MISC */

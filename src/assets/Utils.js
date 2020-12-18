@@ -1,3 +1,15 @@
+import { isMobile } from "react-device-detect"
+
+export class InterfaceUtils {
+
+    static setMobileHeight() {
+        if(isMobile) {
+            var height = document.getElementsByTagName("body")[0].offsetHeight 
+            document.getElementsByTagName("body")[0].style.height = height
+        }
+    }
+}
+
 export class RegexUtils {
 
     static regexEmail(email) {

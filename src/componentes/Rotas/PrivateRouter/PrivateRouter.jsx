@@ -1,19 +1,17 @@
 import React, { useContext } from "react"
-import Loading from "../../Loading/Loading"
+import LoadingPagina from "../../Loadings/LoadingPagina/LoadingPagina"
 import StoreContext from "../../Rotas/Store/Context"
 import {Dados} from "../../../assets/DadosGlobais"
 
-const PrivateRoute = (props) => {
+export default function PrivateRoute({logado, naoLogado, visitante, component}) {
     const {estadoAPI} = useContext(StoreContext)
-    if(estadoAPI == 0) return <Loading/>
+    if(estadoAPI == 0) return <LoadingPagina/>
     if(estadoAPI == 1) return (
         <>
-            {Dados.estadoLogin == "LOGADO" ? props.logado != undefined ? props.logado : props.component: ""}
-            {Dados.estadoLogin == "NAO_LOGADO" ? props.naoLogado != undefined ? props.naoLogado : props.component: ""}
-            {Dados.estadoLogin == "VISITANTE" ? props.visitante != undefined ? props.visitante : props.component: ""}
+            {Dados.estadoLogin == "LOGADO" ? logado != undefined ? logado : component: ""}
+            {Dados.estadoLogin == "NAO_LOGADO" ? naoLogado != undefined ? naoLogado : component: ""}
+            {Dados.estadoLogin == "VISITANTE" ? visitante != undefined ? visitante : component: ""}
         </>
     )
     
 }
-
-export default PrivateRoute

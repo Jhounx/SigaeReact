@@ -11,6 +11,7 @@ export const AlertaContainer = styled.div`
     padding-top: 12px;
     padding-bottom: 12px;
     display: flex !important;
+    overflow-y: auto;
 `
 
 export const DivIcon = styled.div`
@@ -23,6 +24,8 @@ export const DivText = styled.div`
     align-items: center;
     margin-left: 12px;
     margin-right: 7px;
+    word-break: break-word;
+    height: 100%;
 `
 
 export const DivClose = styled.div`
