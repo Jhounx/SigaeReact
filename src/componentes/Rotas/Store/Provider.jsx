@@ -1,21 +1,24 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Context from "./Context"
+import ErroGeral from "../../Comuns/ErroGeral/ErroGeral"
 import { LoginAPI } from "../../../assets/API"
-import { Definir } from "../../../assets/DadosGlobais"
+import * as Global from "../../../assets/DadosGlobais"
 
 export default function StoreProvider({ children }) {
-    const [estadoAPI, setEstadoAPI] = useState(0)
+    const [estadoApp, setEstadoApp] = useState(0)
+    const [erro, setErro] = useState("NONE")
 
-    LoginAPI.init((retorno) => {
-        Definir(retorno)
-        setEstadoAPI(1)
-    })
-
-    console.log("teste")
-
+    useEffect(() => {
+        Global.setCrashState(setEstadoApp, setErro)
+        LoginAPI.init((retorno) => {
+            Global.init(retorno)
+            setEstadoApp(1)
+        })
+    }, [])
+    
     return (
-        <Context.Provider value={{ estadoAPI, setEstadoAPI}}>
-            {children}
+        <Context.Provider value={{ estadoApp, setEstadoApp}}>
+            {estadoApp > -1 ? children : <ErroGeral erro={erro}/>}
         </Context.Provider>
     )
 }

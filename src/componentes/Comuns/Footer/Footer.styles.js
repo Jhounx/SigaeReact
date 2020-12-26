@@ -3,7 +3,8 @@ import styled from "styled-components"
 export const FooterContainer = styled.div`
     width: 100% !important;
     height: 150px !important;
-    background-color: var(--background-cinza-escuro) !important;
+    min-height: 150px !important;
+    background-color: #4a5058 !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,7 +21,7 @@ export const FooterLinha1 = styled.div`
 
 export const SigaeTitulo = styled.div`
     font-size: 20px;
-    color: var(--foreground-roxo-claro);
+    color: #88a4e6;
     text-align: center;
     font-weight: 400 !important;
 `
@@ -38,16 +39,15 @@ export const Desenvolvido = styled.div`
 `
 
 export const DesenvolvidoLink = styled.a`
-    color: rgb(68, 221, 104);
+    color: #44dd68;
     transition: color 300ms;
     font-size: 17px;
     text-decoration: none;
     display: block;
     &:hover {
-        color: rgb(40, 167, 69);
+        color: #28a745;
         text-decoration: underline;
     }
-    
 `
 
 export const DesenvolvidoLink1 = styled(DesenvolvidoLink)`

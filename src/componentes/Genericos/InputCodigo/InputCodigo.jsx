@@ -3,6 +3,6 @@ import {CodeInput} from "./Input.styles"
 
 export default function InputCodigo({type = "text", fields = 8, ...rest}) {
     return (
-        <CodeInput type={type} fields={fields} {...rest}/>
+        <CodeInput type={type} fields={fields} autoFocus={false} {...rest}/>
     )
 }

@@ -39,7 +39,8 @@
         "no-empty-function": "off",
         "no-empty": "off",
         "no-var": "off",
-        "no-unused-vars": "warn",
-        "react/prop-types": "off"
+        "no-unused-vars": "off",
+        "react/prop-types": "off",
+        "react/display-name": "off"
     }
 }

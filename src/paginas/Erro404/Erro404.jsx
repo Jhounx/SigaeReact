@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Erro404Comp from "../../componentes/Genericos/Erro404/Erro404"
+import Erro404Comp from "../../componentes/Comuns/Erro404/Erro404"
 
 export default function Erro404() {
     return (
@@ -11,7 +11,7 @@ export default function Erro404() {
 }
 
 const Container = styled.div`
-    background-color: var(--background-cinza-padrao);
+    background-color: #f0f1f3;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -4,9 +4,9 @@ import StoreContext from "../../Rotas/Store/Context"
 import {Dados} from "../../../assets/DadosGlobais"
 
 export default function PrivateRoute({logado, naoLogado, visitante, component}) {
-    const {estadoAPI} = useContext(StoreContext)
-    if(estadoAPI == 0) return <LoadingPagina/>
-    if(estadoAPI == 1) return (
+    const {estadoApp} = useContext(StoreContext)
+    if(estadoApp == 0) return <LoadingPagina/>
+    if(estadoApp == 1) return (
         <>
             {Dados.estadoLogin == "LOGADO" ? logado != undefined ? logado : component: ""}
             {Dados.estadoLogin == "NAO_LOGADO" ? naoLogado != undefined ? naoLogado : component: ""}

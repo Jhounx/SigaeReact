@@ -1,9 +1,9 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { Alterar } from "../../../assets/DadosGlobais"
+import { alterar } from "../../../assets/DadosGlobais"
 
 export default function LinkEstado(props) {
-    if (props.estadoLogin) Alterar("estadoLogin", props.estadoLogin)
+    if (props.estadoLogin) alterar("estadoLogin", props.estadoLogin)
     return (
         <Link to={props.to}>{props.children}</Link>
     )

@@ -1,9 +1,10 @@
 import { React, useState } from "react"
 import { Base, PopupHeader, SigaeIcon, Titulo, PopupBody, PopupBottom, BotaoCancelar } from "../../Base/Base"
 import { Button } from "@material-ui/core"
-import { Spinner } from "../../../Comuns/SVG/SVG"
+import { Spinner } from "../../../Utils/SVG/SVG"
 import { RegexUtils } from "../../../../assets/Utils"
 import { EmailAPI } from "../../../../assets/API"
+import Toast from "../../../../assets/Toast"
 
 import InputLogin from "../../../Genericos/InputLogin/InputLogin"
 import Alerta from "../../../Genericos/Alerta/Alerta"
@@ -14,7 +15,7 @@ export default function RecuperarSenha({ open, setOpen }) {
     const [botaoAtivo, setBotaoAtivo] = useState(true)
     const [esperandoAPI, setEsperandoAPI] = useState(0)
     const [showAlerta, setShowAlerta] = useState(false)
-    const [emailResposta, setEmailResposta] = useState("pedrocmota1@hotmail.com")
+    const [emailResposta, setEmailResposta] = useState("")
     const emailOnChange = (e) => {
         setEmail(e.target.value)
         setBotaoAtivo(!RegexUtils.regexEmail(e.target.value))
@@ -23,6 +24,16 @@ export default function RecuperarSenha({ open, setOpen }) {
         var waiting = e.currentTarget.getAttribute("waiting")
         if (waiting == 0) {
             setEsperandoAPI(1)
+            setShowAlerta(false)
+            EmailAPI.enviarEmailRecu(email, (retorno) => {
+                setEsperandoAPI(0)
+                if(retorno.status == "OK") {
+                    setEmailResposta(email)
+                    setShowAlerta(true)
+                } else {
+                    Toast.error("Erro ao processar a solicitação")
+                }
+            })
         }
     }
     return (
@@ -32,7 +43,7 @@ export default function RecuperarSenha({ open, setOpen }) {
                 <Titulo>Recuperar senha</Titulo>
             </PopupHeader>
             <PopupBody overflowY={false}>
-                <CustumInputLogin type="email" holder={"Digite seu email"}
+                <CustumInputLogin id="recuperarEmail" type="email" holder={"Digite seu email"}
                     value={email} onChange={emailOnChange} disabled={esperandoAPI} />
                 <CustumButton disabled={botaoAtivo} waiting={esperandoAPI} variant="contained" color="primary"
                     onClick={enviarEmail}>

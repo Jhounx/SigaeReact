@@ -1,14 +1,25 @@
 var Dados = {}
-/**
- * 
- * @param {JSON} obj 
- */
-function Definir(json) {
+var updateEstadoApp
+var updateCrashErro
+
+function init(json) {
     Dados = json
 }
 
-function Alterar(key, value) {
+function alterar(key, value) {
     Dados[key] = value
 }
 
-export {Dados, Definir, Alterar}
+function setCrashState(stateFun, stringFun) {
+    updateEstadoApp = stateFun
+    updateCrashErro = stringFun
+}
+
+export {
+    Dados,
+    updateEstadoApp,
+    updateCrashErro,
+    init,
+    alterar,
+    setCrashState
+}

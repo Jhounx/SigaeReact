@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { CustumInput, InputPlaceHolder } from "./InputLogin.styles"
 
 export default function InputLogin({ className, style, holder, value, setErro, erro = false, children, ...inputProps }) {
-    const [placeColor, setPlaceColor] = useState("--foreground-roxo-fraco")
+    const [placeColor, setPlaceColor] = useState("#9392b9")
     return (
         <div className={className} style={{
             position: "relative",
@@ -12,10 +12,10 @@ export default function InputLogin({ className, style, holder, value, setErro, e
             <InputPlaceHolder className="inputLoginHolder" visivel={value.length > 0} color={placeColor}>{holder}</InputPlaceHolder>
             <CustumInput value={value} spellCheck="false" erro={erro} placeholder={holder} {...inputProps}
                 onFocus={() => {
-                    setPlaceColor("--foreground-roxo-brilhante");
+                    setPlaceColor("#827ffe");
                     if (typeof setErro == "function") setErro(false)
                 }}
-                onBlur={() => { setPlaceColor("--foreground-roxo-fraco") }} {...inputProps} />
+                onBlur={() => { setPlaceColor("#9392b9") }} {...inputProps} />
             {children}
         </div>
     )

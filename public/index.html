@@ -13,51 +13,79 @@
 </head>
 
 <body>
-    <noscript>
-        <style>
-            .noscript {
-                display: flex !important;
-            }
-        </style>
-    </noscript>
     <div id="root">
-        <div class="preRender">
-            <div class="noscript">
-                <h1>Alerta!!!</h1>
-                <h2>Você precisa ativar o<br> javascript para abrir o SiGAÊ</h2>
+        <noscript>
+            <div class="container">
+                <div class="containerTexto">
+                    <h1 class="titulo">Não foi possível iniciar a aplicação</h1>
+                    <h2 class="erroTexto">Você precisa de javascript para rodar a aplicação</h2>
+                    <div class="divisor"></div>
+                    <div class="dica">Acesse as configurações do navegador para ligar o javascript</div>
+                </div>
             </div>
-        </div>
+        </noscript>
         <style>
+            * {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+                "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", 
+                "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            }
+
+            #root {
+                background-color: rgb(241,242,243);
+                height: 100%;
+            }
+
             body {
-                margin: 0
+                margin: 0px;
             }
 
-            .preRender {
-                background-color: rgb(240, 241, 243);
+            .container {
                 width: 100%;
                 height: 100%;
-            }
-
-            .noscript {
-                display: none;
+                display: flex;
                 flex-direction: column;
-                width: 100%;
-                height: 100%;
+                justify-content: center;
                 align-items: center;
+                background-color: #f0f1f3;
             }
 
-            h1 {
-                color: crimson;
-                font-size: 90;
-                margin-top: 100px !important;
+            .containerTexto {
+                width: 600px;
+                margin-bottom: 200px;
             }
 
-            h2 {
-                font-size: 35px;
+            @media(max-width: 620px) {
+                .containerTexto {
+                    width: 90%; 
+                }
+                .titulo, .erroTexto {
+                    text-align: center;
+                }
+            }
+
+            .titulo {
                 color: crimson;
-                text-align: justify;
-                text-justify: inter-word;
+                font-size: 36px;
+            }
+
+            .erroTexto {
+                margin-top: 20px;
+                word-break: break-word;
+            }
+
+            .divisor {
+                width: 100%;
+                border: 1px solid #dfe0e2;
+                margin-top: 25px;
+            }
+
+            .dica {
+                width: 100%;
+                margin-top: 10px;
+                word-break: break-word;
                 text-align: center;
+                font-size: 22px;
             }
         </style>
     </div>

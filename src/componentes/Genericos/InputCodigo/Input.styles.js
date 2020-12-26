@@ -10,9 +10,9 @@ export const CodeInput = styled(ReactCodeInput)`
         font-size: 22px;
         text-align: center;
         font-weight: bold;
-        border: 2px solid var(--foreground-roxo-fraco);
+        border: 2px solid #3f4c6b;
         outline: none;
-        color: var(--foreground-roxo-escuro);
+        color: #3f4c6b;
         text-transform: uppercase;
     }
 `

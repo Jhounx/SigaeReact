@@ -19,13 +19,13 @@ export default function Erro404({link, textoBotao}) {
 
 const Titulo = styled.h1`
     font-size: 120px;
-    color: var(--foreground-roxo-escuro);
+    color: #3f4c6b;
     text-decoration: underline;
     text-align: center;
 `
 
 const Aviso = styled.h2`
-    color: var(--foreground-roxo-escuro);
+    color: #3f4c6b;
 `
 
 const CustumLink = styled(Link)`
@@ -35,5 +35,5 @@ const CustumLink = styled(Link)`
 const CustumBotao = styled(Button)`
     width: 100%;
     margin-top: 20px !important;
-    color: var(--foreground-cinza-escuro)
+    color: #909294;
 `

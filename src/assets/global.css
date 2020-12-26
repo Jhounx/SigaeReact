@@ -6,58 +6,49 @@
 
 html,
 body {
-    height: 100%;
     width: 100%;
+}
+
+body {
+    display: flex;
 }
 
 #root {
     width: 100%;
-    height: 100%;
+    display: flex;
+    flex: 1;
 }
 
-.react-toast-notifications__container {
-    z-index: 99999999999 !important;
-    overflow-y: hidden !important;
+.global_gradient {
+    background: linear-gradient(#606c88, #404d6c) !important;
 }
 
-:root {
-    --background: rgb(250, 250, 250);
-    --background-cinza-padrao: rgb(240, 241, 243);
-    --background-roxo-claro: rgb(96, 108, 136);
-    --background-roxo-escuro: rgb(64, 77, 108);
-    --background-cinza-claro: rgb(219, 221, 224, 0.692);
-    --background-cinza-escuro: rgb(74, 80, 88);
-    --foreground-roxo-claro: rgb(136, 164, 230);
-    --foreground-roxo-escuro: rgb(63, 76, 107);
-    --foreground-roxo-brilhante: rgb(130, 127, 254);
-    --foreground-roxo-fraco: rgb(147, 146, 185);
-    --foreground-link-verde: rgb(40, 167, 69);
-    --foreground-cinza-claro: rgb(158, 158, 158);
-    --foreground-cinza-escuro: rgb(144, 146, 148);
-    --foreground-black: rgb(23, 22, 26);
-    --foreground-vermelho-erro: rgb(228, 74, 74);
-    --foreground-main: rgb(78, 95, 120)
+.Toastify__toast {
+    background: #312e2e !important;
+}
+
+.Toastify__toast-body {
+    display: flex;
+    flex-direction: row;
 }
 
 /* MISC */
 input::placeholder {
     color: rgb(209, 209, 209);
-    /* color: var(--foreground-cinza-claro); */
 }
 
 input::-ms-input-placeholder {
     color: rgb(209, 209, 209)
-    /* color: var(--foreground-cinza-claro); */
 }
 
 ::-moz-selection {
     color: aliceblue;
-    background: var(--foreground-roxo-claro);
+    background:#88a4e6;
 }
 
 ::selection {
     color: aliceblue;
-    background: var(--foreground-roxo-claro);
+    background:#88a4e6;
 }
 
 input:-webkit-autofill,

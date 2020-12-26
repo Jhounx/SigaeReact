@@ -1,4 +1,13 @@
 import { isMobile } from "react-device-detect"
+import {updateEstadoApp, updateCrashErro} from "./DadosGlobais"
+
+export class AppUtils {
+ 
+    static crash(erro) {
+        updateEstadoApp(-1)
+        updateCrashErro(erro)
+    }
+}
 
 export class InterfaceUtils {
 
@@ -6,6 +15,18 @@ export class InterfaceUtils {
         if(isMobile) {
             var height = document.getElementsByTagName("body")[0].offsetHeight 
             document.getElementsByTagName("body")[0].style.height = height
+        }
+    }
+
+    static setMobileFixed() {
+        if(isMobile) {
+            document.getElementsByTagName("body")[0].style.position = "fixed"
+        }
+    }
+
+    static disableMobileFixed() {
+        if(isMobile) {
+            document.getElementsByTagName("body")[0].style.position = "static"
         }
     }
 }

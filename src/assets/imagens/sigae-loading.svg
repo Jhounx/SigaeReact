@@ -1,13 +1,13 @@
-<svg width="280" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" 
-    style="margin: auto; background: rgb(241, 242, 243); display: block; shape-rendering: auto; animation-play-state: running; animation-delay: 0s;">
+<svg width="280" height="250"
+    xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" style="margin: auto; shape-rendering: auto; animation-play-state: running; animation-delay: 0s;">
     <style type="text/css" style="animation-play-state: running; animation-delay: 0s;">
         text { text-anchor: middle; font-size: 102px; opacity: 0; }
     </style>
     <title>Logo loading SiGAÊ</title>
-	<desc>
+    <desc>
 		Feito por Pedro Cerqueira Mota
 		https://github.com/pedrocmota/
-	</desc>
+    </desc>
     <g style="transform-origin: 140px 125px; transform: scale(1.275); animation-play-state: running; animation-delay: 0s;">
         <g transform="translate(140,125)" style="animation-play-state: running; animation-delay: 0s;">
             <g transform="translate(-5,0)" style="animation-play-state: running; animation-delay: 0s;">

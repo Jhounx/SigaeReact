@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, memo } from "react"
 import { Animated } from "react-animated-css";
-import { SigaeLoading } from "../../Comuns/SVG/SVG"
+import { SigaeLoading } from "../../Utils/SVG/SVG"
 import styled from "styled-components"
 
-export default function LoadingPagina({ timer = 0 }) {
+export default React.memo(({timer = 0}) => {
     const [visible, setVisible] = useState(true)
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function LoadingPagina({ timer = 0 }) {
             </LoadingContainer>
         </CustumAnimated>
     )
-}
+})
 
 const CustumAnimated = styled(Animated)`
     position: absolute;
@@ -30,13 +30,13 @@ const CustumAnimated = styled(Animated)`
 
 const LoadingContainer = styled.div`
     position: absolute;
-   height: 100vh;
-   width: 100vw;
-   background-color: rgb(241, 242, 243);
-   margin: 0;
-   left: 0;
-   top: 0;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(241, 242, 243);
+    margin: 0;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
