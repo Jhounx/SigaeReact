@@ -202,7 +202,7 @@ export const Alerta = styled(AlertaGenerico)`
 
 export const AlertaContent = styled.div`
     display: "flex";
-    flex-direction: "column"
+    flex-direction: "column";
 `
 
 export const EsqueciSenha = styled.div`

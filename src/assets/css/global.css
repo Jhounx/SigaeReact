@@ -32,6 +32,11 @@ body {
     flex-direction: row;
 }
 
+.MuiAutocomplete-option[aria-selected="true"] {
+    background-color: #7079c9 !important;
+    color: white !important;
+}
+
 /* MISC */
 input::placeholder {
     color: rgb(209, 209, 209);

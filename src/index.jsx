@@ -6,7 +6,7 @@ import StoreProvider from "./componentes/Rotas/Store/Provider"
 import PrivateRoute from "./componentes/Rotas/PrivateRouter/PrivateRouter"
 import { ToastContainer } from "react-toastify";
 
-import "./assets/global.css"
+import "./assets/css/global.css"
 import "react-toastify/dist/ReactToastify.css";
 
 import TelaMain from "./paginas/Main/Main"

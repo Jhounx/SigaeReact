@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Helmet from "react-helmet"
-import * as css from "./Login.style"
+import * as css from "./Login.styles"
 
 import { Link } from "react-router-dom"
 import { InterfaceUtils } from "../../assets/Utils"
@@ -23,21 +23,24 @@ export default function Login() {
     const [alertaAberto, setAlertaAberto] = useState(false)
     const [alertaTexto, setAlertaTexto] = useState("NONE")
 
+    const inputPassword = useRef()
+    const botaoLogin = useRef()
+
     const [openPopup, setOpenPopup] = useState(false)
 
     const matriculaOnChange = (e) => {
         setMatricula(e.target.value)
-        if (e.target.value.length == 11) document.getElementById("senha")?.focus()
+        if (e.target.value.length == 11) inputPassword.current.focus()
     };
     const senhaOnChange = (e) => {
         setSenha(e.target.value)
     };
 
     const matriculaKeyDown = (e) => {
-        if (e.key == "Enter") document.getElementById("senha")?.focus()
+        if (e.key == "Enter") inputPassword.current.focus()
     };
     const senhaKeyDown = (e) => {
-        if (e.key == "Enter") document.getElementById("botaoLogin")?.focus()
+        if (e.key == "Enter") botaoLogin.current.focus()
     };
 
     const logar = (e) => {
@@ -84,14 +87,14 @@ export default function Login() {
                         </css.Matricula>
                         <css.Senha type={passwordShowed ? "text" : "password"}
                             id="senha" holder="Sua Senha" value={senha} onChange={senhaOnChange} onKeyDown={senhaKeyDown}
-                            erro={erroCampo2} setErro={setErroCampo2}>
+                            erro={erroCampo2} setErro={setErroCampo2} ref={inputPassword}>
                             <css.ShowPassword visivel={passwordShowed ? 1 : 0} onClick={() => {
                                 showPassword(!passwordShowed)
-                            }}/>
+                            }} />
                             <css.ErroIcone visivel={erroCampo2 ? 1 : 0}/>
                         </css.Senha>
                         <css.Botao id="botaoLogin" variant="contained" color="primary"
-                            waiting={esperandoAPI} onClick={logar}>
+                            waiting={esperandoAPI} onClick={logar} ref={botaoLogin}>
                             {
                                 esperandoAPI == 1 ? (
                                     <Spinner />

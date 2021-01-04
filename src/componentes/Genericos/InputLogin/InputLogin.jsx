@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, forwardRef } from "react"
 import { CustumInput, InputPlaceHolder } from "./InputLogin.styles"
 
-export default function InputLogin({ className, style, holder, value, setErro, erro = false, children, ...inputProps }) {
+const InputLogin = ({ className, style, holder, value, setErro, erro = false, children, ...inputProps }, ref) => {
     const [placeColor, setPlaceColor] = useState("#9392b9")
     return (
         <div className={className} style={{
@@ -15,8 +15,10 @@ export default function InputLogin({ className, style, holder, value, setErro, e
                     setPlaceColor("#827ffe");
                     if (typeof setErro == "function") setErro(false)
                 }}
-                onBlur={() => { setPlaceColor("#9392b9") }} {...inputProps} />
+                onBlur={() => { setPlaceColor("#9392b9") }} ref={ref} {...inputProps} />
             {children}
         </div>
     )
 }
+
+export default forwardRef(InputLogin)
