@@ -1,9 +1,11 @@
 import styled from "styled-components"
-import Input from "../../componentes/Genericos/InputText/InputText"
+import Input from "../../../componentes/Genericos/InputText/InputText"
 import Button from "@material-ui/core/Button";
 import { Face, School, LocationCity, SupervisedUserCircle, AccountBox, Email, VpnKey } from "@material-ui/icons/";
+import { Form } from "@unform/web";
 
-export const Formulario = styled.form`
+
+export const Formulario = styled(Form)`
     width: 600px;
     flex: 1;
 `

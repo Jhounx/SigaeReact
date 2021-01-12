@@ -2,6 +2,10 @@ import { isMobile } from "react-device-detect"
 import {updateEstadoApp, updateCrashErro} from "./DadosGlobais"
 
 export class AppUtils {
+
+    static showLoading(show) {
+        
+    }
  
     static crash(erro) {
         updateEstadoApp(-1)
@@ -42,8 +46,8 @@ export class RegexUtils {
 export class ArrayUtils {
 
     static checkIfSomeEmpty(...vars) {
-        for(var i = 0; i < vars.length; i++) {
-            var v = vars[i]
+        for(let v of vars) {
+            v = v.current.value
             if(v == undefined || v == null || v == "") return true;
         }
         return false;

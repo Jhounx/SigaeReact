@@ -14,7 +14,6 @@ export class LoginAPI {
      * @param {Function} callback 
      */
     static init(callback) {
-        
         setTimeout(() => {
             callback(
                 {estadoLogin: "NAO_LOGADO"}

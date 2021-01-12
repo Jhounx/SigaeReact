@@ -1,4 +1,4 @@
-import { React, useState } from "react"
+import React, { useState } from "react"
 import { Base, PopupHeader, SigaeIcon, Titulo, PopupBody, PopupBottom, BotaoCancelar } from "../../Base/Base"
 import { Button } from "@material-ui/core"
 import { Spinner } from "../../../Utils/SVG/SVG"
@@ -10,7 +10,7 @@ import InputLogin from "../../../Genericos/InputLogin/InputLogin"
 import Alerta from "../../../Genericos/Alerta/Alerta"
 import styled from "styled-components"
 
-export default function RecuperarSenha({ open, setOpen }) {
+export default React.memo(({ open, setOpen }) => {
     const [email, setEmail] = useState("")
     const [botaoAtivo, setBotaoAtivo] = useState(true)
     const [esperandoAPI, setEsperandoAPI] = useState(0)
@@ -63,7 +63,7 @@ export default function RecuperarSenha({ open, setOpen }) {
             </PopupBottom>
         </Base>
     );
-}
+})
 
 const CustumInputLogin = styled(InputLogin)`
     input {

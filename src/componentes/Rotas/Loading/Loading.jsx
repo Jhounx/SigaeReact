@@ -1,27 +1,19 @@
-import React, { useState, useEffect, memo } from "react"
+import React, { useContext } from "react"
+import styled from "styled-components"
+import StoreContext from "../../Rotas/Store/Context"
 import { Animated } from "react-animated-css";
 import { SigaeLoading } from "../../Utils/SVG/SVG"
-import styled from "styled-components"
 
-export default React.memo(({timer = 0}) => {
-    const [visible, setVisible] = useState(true)
-
-    useEffect(() => {
-        if (timer > 0) {
-            setTimeout(() => {
-                setVisible(false)
-            }, timer);
-        }
-    }, [timer])
-
+export default function Loading() {
+    const { showLoading } = useContext(StoreContext)
     return (
-        <CustumAnimated animationIn="bounceInLeft" animationOut="fadeOut" animationInDuration={0} isVisible={visible}>
+        <CustumAnimated animationIn="bounceInLeft" animationOut="fadeOut" animationInDuration={0} isVisible={showLoading}>
             <LoadingContainer>
                 <SigaeLoading/>
             </LoadingContainer>
         </CustumAnimated>
     )
-})
+}
 
 const CustumAnimated = styled(Animated)`
     position: absolute;

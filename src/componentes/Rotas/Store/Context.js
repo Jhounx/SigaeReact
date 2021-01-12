@@ -2,7 +2,9 @@ import { createContext } from "react"
 
 const StoreContext = createContext({
     estadoApp: null,
-    setEstadoApp: () => {}
+    setEstadoApp: () => {},
+    showLoading: null,
+    setShowLoading: () => {}
 })
 
 export default StoreContext

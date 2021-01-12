@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from "react"
 import { Animated } from "react-animated-css";
 
-export default React.memo(({children, className, visible, time = 500}) => {
+export default ({children, className, visible, time = 500}) => {
     const [display, setDisplay] = useState(visible ? "block" : "none")
 
     useEffect(() => {
@@ -18,4 +18,4 @@ export default React.memo(({children, className, visible, time = 500}) => {
             {children}
         </Animated>
     )
-})
+}

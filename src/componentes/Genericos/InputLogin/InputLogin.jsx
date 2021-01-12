@@ -1,24 +1,25 @@
 import React, { useState, forwardRef } from "react"
-import { CustumInput, InputPlaceHolder } from "./InputLogin.styles"
+import { Container, Input, Placeholder } from "./InputLogin.styles"
 
-const InputLogin = ({ className, style, holder, value, setErro, erro = false, children, ...inputProps }, ref) => {
-    const [placeColor, setPlaceColor] = useState("#9392b9")
+export default React.memo(forwardRef(({ className, placeholder, onChange, setErro, erro = false, children, ...rest }, ref) => {
+    const [show, setShow] = useState(false)
+    const onChangeFun = (e) => {
+        var t = e.target.value
+        if(t.length > 0 && !show) setShow(true)
+        if(t.length === 0) setShow(false)
+    }
     return (
-        <div className={className} style={{
-            position: "relative",
-            width: "100%",
-            ...style
-        }} >
-            <InputPlaceHolder className="inputLoginHolder" visivel={value.length > 0} color={placeColor}>{holder}</InputPlaceHolder>
-            <CustumInput value={value} spellCheck="false" erro={erro} placeholder={holder} {...inputProps}
-                onFocus={() => {
-                    setPlaceColor("#827ffe");
-                    if (typeof setErro == "function") setErro(false)
+        <Container className={className} erro={erro} >
+            <Placeholder className="inputLoginHolder" visivel={show}>
+                {placeholder}
+            </Placeholder>
+            <Input spellCheck="false" placeholder={placeholder} ref={ref} {...rest}
+                onChange={(e) => {
+                    onChangeFun(e)
+                    if(typeof onChange == "function") onChange(e)
                 }}
-                onBlur={() => { setPlaceColor("#9392b9") }} ref={ref} {...inputProps} />
+            />
             {children}
-        </div>
+        </Container>
     )
-}
-
-export default forwardRef(InputLogin)
+}))

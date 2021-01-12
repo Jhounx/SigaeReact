@@ -18,16 +18,20 @@ export const Container = styled.div`
         input {
             border-color: #dae0e5;
         }
-        div {
+        /* div {
             ${(props) => props.erro ? "color: #85859f" : ""};
-        }
+        } */
     }
-    & > input {
+    &[erro=true] {
+        background-color: red !important;
+    }
+     & > input {
         ${(props) => props.erro ? "border-color: crimson" : ""};
     }
     & > div {
         ${(props) => props.erro ? "color: crimson" : ""};
-    }
+    } 
+
 `
 
 export const Input = styled.input`

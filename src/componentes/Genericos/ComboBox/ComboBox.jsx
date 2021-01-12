@@ -15,7 +15,7 @@ export const ComboBox = React.memo(forwardRef(({ values, grupos, placeholder, er
             selectOnFocus={false}
             erro={erro}
             ref={ref}
-            renderInput={(params) => <TextField {...params} onChange={() => {console.log("teste")}} variant="outlined" placeholder={placeholder}/>}
+            renderInput={(params) => <TextField {...params} variant="outlined" placeholder={placeholder}/>}
             {...props}
         />
     )

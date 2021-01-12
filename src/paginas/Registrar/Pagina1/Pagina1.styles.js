@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import InputCod from "../../componentes/Genericos/InputCodigo/InputCodigo"
-import { Spinner } from "../../componentes/Utils/SVG/SVG"
+import InputCod from "../../../componentes/Genericos/InputCodigo/InputCodigo"
+import { Spinner } from "../../../componentes/Utils/SVG/SVG"
 
 export const TextoDigiteCodigo = styled.h2`
     margin-bottom: 30px;

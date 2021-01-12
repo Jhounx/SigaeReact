@@ -1,6 +1,22 @@
 import styled from "styled-components"
 
-export const CustumInput = styled.input`
+export const Container = styled.div`
+    position: relative;
+    width: 100%;
+    &:focus-within {
+        div {
+            color: #827ffe;
+        }
+    }
+    input {
+        ${(props) => props.erro ? "border-color: crimson" : ""};
+    }
+    div {
+        ${(props) => props.erro ? "color: crimson" : ""};
+    }
+`
+
+export const Input = styled.input`
     color: #17161a;
     width: 100%;
     height: 50px;
@@ -20,7 +36,7 @@ export const CustumInput = styled.input`
     }
 `
 
-export const InputPlaceHolder = styled.div`
+export const Placeholder = styled.div`
     position: absolute;
     height: 18px !important;
     align-items: center;
@@ -29,6 +45,6 @@ export const InputPlaceHolder = styled.div`
     padding: 0 3 3 3;
     transition: color 200ms, opacity 250ms;
     background: linear-gradient(0deg, white, #fafafa);
-    color: ${props => props.color};
+    color: #9392b9;
     opacity: ${props => props.visivel > 0 ? 100 : 0};
 `

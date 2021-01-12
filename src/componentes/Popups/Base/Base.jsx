@@ -1,7 +1,7 @@
 import React from "react"
 import { Dialog, Button } from "@material-ui/core";
 import LogoSigae from "../../../assets/imagens/sigae.svg"
-import styled, {css} from "styled-components"
+import styled, { css } from "styled-components"
 
 const DialogBase = styled(Dialog)`
     .MuiDialog-container {
@@ -30,13 +30,13 @@ const DialogBase = styled(Dialog)`
     }
 `
 
-export function Base({ open, largura, altura, medialargura, mediaaltura, children }) {
+export const Base = React.memo(({open, largura, altura, medialargura, mediaaltura, children}) => {
     return (
         <DialogBase open={open} largura={largura} altura={altura} medialargura={medialargura} mediaaltura={mediaaltura}>
             {children}
         </DialogBase>
     );
-}
+})
 
 export const PopupHeader = styled.div`
     display: flex;
